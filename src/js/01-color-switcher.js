@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import SimpleLightbox from 'simplelightbox/dist/simple-lightbox.esm';
+
 const refs = {
   body: document.querySelector('body'),
   startBtn: document.querySelector('button[data-start]'),
@@ -14,6 +17,7 @@ function onClickStartBtn() {
     refs.body.style.backgroundColor = getRandomHexColor();
   }, 1000);
   refs.startBtn.setAttribute('disabled', 'true');
+  refs.stopBtn.removeAttribute('disabled', 'true');
 }
 function onClickStopBtn() {
   clearInterval(timerBtnId);
