@@ -15,7 +15,6 @@ const refs = {
 
 refs.btnStart.setAttribute('disabled', 'true');
 
-let intervalId = null;
 let userDate = null;
 
 const options = {
@@ -24,10 +23,12 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    selectedDates[0] <= options.defaultDate
-      ? (Notiflix.Notify.failure('Please choose a date in the future'),
-        (refs.btnStart.disabled = true))
-      : (refs.btnStart.disabled = false);
+    if (selectedDates[0] <= options.defaultDate) {
+      Notiflix.Notify.failure('Please choose a date in the future'),
+        (refs.btnStart.disabled = true);
+    } else {
+      refs.btnStart.disabled = false;
+    }
     userDate = selectedDates[0];
   },
 };
