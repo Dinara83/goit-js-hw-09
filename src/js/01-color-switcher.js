@@ -10,16 +10,24 @@ refs.startBtn.addEventListener('click', onClickStartBtn);
 refs.stopBtn.addEventListener('click', onClickStopBtn);
 
 function onClickStartBtn() {
+  changeStatusBtn();
   timerBtnId = setInterval(() => {
     refs.body.style.backgroundColor = getRandomHexColor();
   }, 1000);
-  refs.startBtn.setAttribute('disabled', 'true');
-  refs.stopBtn.removeAttribute('disabled', 'true');
 }
 function onClickStopBtn() {
   clearInterval(timerBtnId);
-  refs.startBtn.removeAttribute('disabled', 'true');
-  refs.stopBtn.setAttribute('disabled', 'true');
+  changeStatusBtn();
+}
+
+function changeStatusBtn() {
+  if (!refs.startBtn.disabled) {
+    refs.startBtn.setAttribute('disabled', 'true');
+    refs.stopBtn.removeAttribute('disabled');
+  } else {
+    refs.startBtn.removeAttribute('disabled');
+    refs.stopBtn.setAttribute('disabled', 'true');
+  }
 }
 
 function getRandomHexColor() {
